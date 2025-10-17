@@ -1,0 +1,21 @@
+#menu{
+     display:flex;
+
+}
+
+.discover1, .discover2, .discover3 {
+    font-family: DIN2014-Regular;
+    font-weight: 700;
+    -webkit-tap-highlight-color: transparent;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    font-size: 100%
+    /* -webkit-text-size-adjust: 100%; */
+}
+
+.letsgo{
+    font-family: DIN2014-Regular;
+    line-height: 15px;
+    font-size: 100%
+
+}

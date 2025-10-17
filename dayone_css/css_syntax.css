@@ -1,0 +1,433 @@
+CSS - Introduction
+===============================================================
+What is CSS?
+```````````````````
+CSS (Cascading Style Sheets) is a language used to style HTML 
+content—like setting fonts, colors, layouts, spacing, etc.
+
+Why CSS?
+``````````````````
+Separation of content and style
+Reusability across pages
+Easier to maintain and update
+
+CSS Use Cases:
+``````````````````
+Styling text, backgrounds, spacing, positioning, responsiveness, 
+animations, and more.
+
+
+
+Syntax:
+===============================================================
+selector {
+  property: value;
+}
+
+Example:
+``````````````````
+h1 {
+  color: blue;
+  font-size: 24px;
+}
+
+Selector: Targets HTML elements
+Property: Style feature (e.g., color)
+Value: Value assigned (e.g., blue)
+Each declaration ends with ;
+
+
+
+CSS - Inclusion (How to apply CSS)
+===============================================================
+
+Inline CSS
+``````````````````
+Applied directly to the HTML element using the style attribute
+<p style="color: red;">This is red text</p>
+
+Internal CSS
+``````````````````
+Defined inside <style> tags within the head of the HTML file
+/* <head>
+  <style>
+    p { 
+      color: green; 
+    }
+  </style>
+</head> */
+
+External CSS
+``````````````````
+Stored in an external .css file and linked via <link>
+<link rel="stylesheet" href="styles.css">
+styles.css:
+
+p {
+  color: blue;
+}
+
+Best practice: Use external CSS for scalability and separation of concerns.
+
+
+
+CSS - Types (Who provides the style?)
+===============================================================
+
+Author styles (You write in your HTML or CSS file)
+User styles (Customized browser settings by users)
+User-Agent styles (Browser’s default styles)
+
+CSS applies in order of specificity and priority:
+Inline > Internal > External > User styles > Browser defaults
+
+
+
+CSS Measurement Units
+===============================================================
+Understanding measurement units is essential for responsive layouts 
+and scalable text.
+
+Absolute Units
+``````````````````
+  px (pixels): Fixed size
+      Example: font-size: 16px;
+      Doesn’t scale with screen size
+
+Relative Units
+``````````````````
+  em: Relative to the parent element's font size
+      Example: font-size: 1.5em;
+      If parent is 16px, 1.5em = 24px
+
+Relative to the root (html) font size
+`````````````````````````````````````
+  More consistent than em
+  Example: font-size: 1rem; (usually 16px)
+
+%: Relative to parent element
+````````````````````````````````
+  Example: width: 50%; → 50% of parent’s width
+
+vw: Viewport width
+````````````````````````````````
+
+  1vw = 1% of browser window’s width
+
+vh: Viewport height
+``````````````````
+  1vh = 1% of browser window’s height
+
+Create a box using all units
+``````````````````
+<div class="box">Responsive Box</div>
+.box {
+  font-size: 1.2em;
+  padding: 2vh 5vw;
+  width: 50%;
+  height: 20vh;
+  background-color: #f0f0f0;
+} 
+
+
+
+CSS Colors
+===============================================================
+
+CSS supports multiple ways to define color:
+
+Named Colors
+``````````````````
+Examples: red, blue, green, orange
+
+Hexadecimal
+``````````````````
+Format: #RRGGBB or #RGB
+Each pair (RR, GG, BB) represents red, green, and blue values (00–FF)
+Example: #ff0000 = red
+
+RGB / RGBA
+``````````````````
+Format: rgb(red, green, blue)
+Each value is 0–255
+Example: rgb(255, 0, 0) = red
+RGBA adds alpha transparency:
+Example: rgba(255, 0, 0, 0.5)
+
+HSL / HSLA
+``````````````````
+Format: hsl(hue, saturation, lightness)
+Example: hsl(0, 100%, 50%) = red
+hue: 0–360 (color wheel)
+saturation: 0% (gray) to 100% (full color)
+lightness: 0% (black) to 100% (white)
+
+Color Play
+``````````````````
+<div class="hex">Hex Color</div>
+<div class="rgb">RGB Color</div>
+<div class="hsl">HSL Color</div>
+
+.hex {
+  background-color: #3498db;
+}
+
+.rgb {
+  background-color: rgb(52, 152, 219);
+}
+
+.hsl {
+  background-color: hsl(204, 70%, 53%);
+}
+
+
+
+
+CSS Selectors
+===============================================================
+
+1. Basic Selectors
+``````````````````
+
+Universal Selector (*)
+-------------------------
+Targets all elements.
+* {
+  margin: 0;
+  padding: 0;
+}
+
+Type Selector
+-------------------------
+Targets elements by tag name.
+p {
+  color: blue;
+}
+
+Class Selector (.)
+-------------------------
+Targets elements by class attribute.
+.highlight {
+  background-color: yellow;
+}
+
+ID Selector (#)
+-------------------------
+Targets elements by ID attribute.
+#main-heading {
+  font-size: 32px;
+}
+
+Group Selector
+-------------------------
+Apply the same styles to multiple selectors.
+h1, h2, p {
+  font-family: Arial;
+}
+
+
+2. Attribute Selector
+`````````````````````````
+Select elements based on their attributes or attribute values.
+input[type="text"] {
+  border: 1px solid green;
+}
+
+
+3. Combinators
+````````````````````````````````
+
+Descendant Selector (space)
+---------------------------
+Selects all p inside a div, at any level.
+div p {
+  color: purple;
+}
+
+Child Selector (>)
+---------------------------
+Selects p elements that are direct children of div.
+div > p {
+  color: red;
+}
+
+Adjacent Sibling Selector (+)
+---------------------------
+Selects the first p immediately after an h1.
+h1 + p {
+  font-weight: bold;
+}
+
+
+General Sibling Selector (~)
+---------------------------
+Selects all p elements after h1, not just the first.
+h1 ~ p {
+  color: gray;
+}
+
+Sample HTML + CSS
+HTML:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selector Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 id="main-heading">Hello, World!</h1>
+  <p class="highlight">This is highlighted.</p>
+  <p>This is normal text.</p>
+
+  <div class="container">
+    <p>This is inside a div.</p>
+    <span>Span in div</span>
+    <p class="highlight">Another highlighted paragraph</p>
+  </div>
+
+  <input type="text" placeholder="Text Input">
+  <input type="email" placeholder="Email Input">
+</body>
+</html>
+💡 CSS (styles.css):
+/* Universal */
+* {
+  font-family: Arial, sans-serif;
+}
+
+/* Type */
+p {
+  color: navy;
+}
+
+/* Class */
+.highlight {
+  background-color: lightyellow;
+}
+
+/* ID */
+#main-heading {
+  color: darkgreen;
+  text-decoration: underline;
+}
+
+/* Grouping */
+h1, .highlight {
+  padding: 10px;
+}
+
+/* Attribute Selector */
+input[type="text"] {
+  border: 2px solid blue;
+}
+
+/* Descendant */
+.container p {
+  font-style: italic;
+}
+
+/* Child */
+.container > span {
+  color: tomato;
+}
+
+/* Adjacent Sibling */
+h1 + p {
+  font-weight: bold;
+}
+
+/* General Sibling */
+h1 ~ p {
+  text-transform: uppercase;
+}
+
+
+
+
+What is the CSS Box Model?
+===============================================================
+Every HTML element is a rectangular box composed of:
+
++------------------------------+
+|         Margin               |
+|  +------------------------+  |
+|  |      Border            |  |
+|  |  +------------------+  |  |
+|  |  |    Padding       |  |  |
+|  |  |  +------------+  |  |  |
+|  |  |  |  Content   |  |  |  |
+|  |  |  +------------+  |  |  |
+|  |  +------------------+  |  |
+|  +------------------------+  |
++------------------------------+
+
+Box Model Components
+``````````````````````````````````````
+Part	    Description
+``````````````````````````````````````
+Content	  The actual text/image inside the element
+Padding	  Space between content and border
+Border	  The edge around padding
+Margin	  Space outside the border (between elements)
+
+Example
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}
+
+box-sizing Property
+`````````````````````````````````
+By default, CSS uses content-box — width and height include only content.
+
+content-box (default)
+--------------------------
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+  box-sizing: content-box;
+}
+Final rendered width = 200 + 40 (padding) + 10 (border) = 250px
+
+border-box (recommended)
+--------------------------
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+  box-sizing: border-box;
+}
+Total width remains 200px, and padding/border are included inside it.
+Use border-box for predictable layouts.
+
+
+HTML:
+<div class="box1">Content Box</div>
+<div class="box2">Border Box</div>
+💡 CSS:
+
+.box1, .box2 {
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  border: 5px solid blue;
+  margin: 20px;
+  background-color: lightblue;
+}
+
+.box1 {
+  box-sizing: content-box;
+}
+
+.box2 {
+  box-sizing: border-box;
+}
+
+ In Browser:
+Right-click on the box → Inspect Element
+In the Styles tab, look for box-sizing
+In Computed tab, see the box model breakdown with width, padding, border, margin
